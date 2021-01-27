@@ -9,6 +9,7 @@ app.use(require('cors')())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
+//引入后台管理接口
 app.use('/admin',adminApi);
 
 const PORT = 3007;

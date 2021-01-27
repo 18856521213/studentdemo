@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { shiyan, time } from '@/api/index.js'
+import { addStudent } from '@/api/index.js'
 export default {
   name: 'HelloWorld',
   data() {
@@ -13,16 +13,9 @@ export default {
     }
   },
   created() {
-    shiyan().then(res =>{
+    addStudent().then(res =>{
       console.log(res);
     })
-    let data = {name:"111"}
-    time(data).then(res =>{
-      console.log(res);
-    })
-    // this.$http.get('http://localhost:3007/home').then(res =>{
-    //   console.log(res);
-    // })
   },
 }
 </script>
