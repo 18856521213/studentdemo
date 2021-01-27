@@ -6,6 +6,16 @@
 <script>
 export default {
   name: 'HelloWorld',
+  data() {
+    return {
+      
+    }
+  },
+  created() {
+    this.$http.get('http://localhost:3007/home').then(res =>{
+      console.log(res);
+    })
+  },
 }
 </script>
 
