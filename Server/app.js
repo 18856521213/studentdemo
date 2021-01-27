@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 // app.use(express.urlencoded({ extended: false }))
 
 app.get('/home',(req,res)=>{
-    let name = {name:"dsd"}
+    let name = {names:"dsd"}
     res.json(name)
 })
 app.post('/time',(req,res)=>{
