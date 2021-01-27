@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-//引入管理后台的接口
+//引入管理后台的路由
 const adminApi = require('./admin-api/router.js');
 // 跨域
 app.use(require('cors')())
