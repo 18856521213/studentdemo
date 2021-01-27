@@ -6,7 +6,8 @@ app.use(require('cors')())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-const PORT = 3007
+const PORT = 3007;
+const aa = "做几个实验";
 app.listen(PORT,()=>{
     console.log(`RUN IN: http://localhost:${PORT}`)
 });
