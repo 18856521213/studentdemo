@@ -1,7 +1,7 @@
 module.exports = {
-    devServer:{
-        host:'localhost',
-        port:8081,
-        open:true
-    }
+    // devServer:{
+    //     host:'localhost',
+    //     port:3007,
+    //     open:true
+    // }
 }

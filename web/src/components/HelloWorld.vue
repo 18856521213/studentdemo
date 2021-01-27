@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import { shiyan } from '@/api/index.js'
 export default {
   name: 'HelloWorld',
   data() {
@@ -12,9 +13,12 @@ export default {
     }
   },
   created() {
-    this.$http.get('http://localhost:3007/home').then(res =>{
+    shiyan().then(res =>{
       console.log(res);
     })
+    // this.$http.get('http://localhost:3007/home').then(res =>{
+    //   console.log(res);
+    // })
   },
 }
 </script>
