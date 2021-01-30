@@ -24,7 +24,25 @@ const routes = [
     component: Home,
     meta:{
       name:"首页"
-    }
+    },
+    children:[
+      {
+        path: 'student',
+        name: 'student',
+        component: ()=> import("@/views/studentManage/studentNames.vue"),
+        meta:{
+          name:"学生名单"
+        }
+      },
+      {
+        path: 'studentScore',
+        name: 'studentScore',
+        component: Login,
+        meta:{
+          name:"学生名单"
+        }
+      },
+    ]
   },
 ]
 

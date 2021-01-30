@@ -8,7 +8,10 @@
         <el-aside width="200px">
           <Aside />
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>
+          <pageHeader></pageHeader>
+          <router-view/>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -18,23 +21,14 @@
 // @ is an alias to /src
 import Hander from '@/components/header.vue'
 import Aside from '@/components/aside.vue'
+import pageHeader from '@/components/common/pageHeader.vue'
 export default {
   name: 'Home',
-  components:{ Hander, Aside }
+  components:{ Hander, Aside, pageHeader }
 }
 </script>
 <style lang="less" scoped>
 .el-header{
     padding: 0;
 }
-.container{
-  height: 100%;
-  background-color: #324157 !important;
-}
-// .el-aside {
-//   height:100%;
-//   display: block;
-//   position: relative;
-//   background-color: #324157 !important;
-// }
 </style>
