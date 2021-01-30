@@ -4,7 +4,7 @@
       <el-header>
         <Hander />
       </el-header>
-      <el-container>
+      <el-container class="container">
         <el-aside width="200px">
           <Aside />
         </el-aside>
@@ -27,4 +27,14 @@ export default {
 .el-header{
     padding: 0;
 }
+.container{
+  height: 100%;
+  background-color: #324157 !important;
+}
+// .el-aside {
+//   height:100%;
+//   display: block;
+//   position: relative;
+//   background-color: #324157 !important;
+// }
 </style>
