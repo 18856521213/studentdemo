@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
-    <el-container>
+  <div class="home" style="height:100%;">
+    <el-container  style="height:100%;">
       <el-header>
         <Hander />
       </el-header>
       <el-container class="container">
-        <el-aside width="200px">
+        <el-aside width="201px">
           <Aside />
         </el-aside>
         <el-main>
@@ -31,4 +31,16 @@ export default {
 .el-header{
     padding: 0;
 }
+
+.el-main {
+  position: absolute;
+  left: 200px;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden
+}
+
+
 </style>

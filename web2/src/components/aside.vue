@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <el-menu
             class="el-menu-vertical-demo"
             background-color="#162237"
@@ -60,5 +60,12 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-    
+.box{
+    height: 100%;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    height: 100%;
+    background-color: red;
+}
 </style>
