@@ -32,7 +32,7 @@ export default {
                     {
                         name:"学生管理",
                         icon:"el-icon-user-solid",
-                        path:"/home",
+                        path:"/studentManage",
                         children:[
                              {path:"/home/student",name:"学生名单"},
                              {path:"/home/studentScore",name:"学生成绩"},
