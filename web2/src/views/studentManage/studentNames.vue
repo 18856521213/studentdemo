@@ -32,6 +32,12 @@
                 <el-table-column prop="fatherName" label="父亲姓名" align="center"></el-table-column>
                 <el-table-column prop="matherName" label="母亲姓名" align="center"></el-table-column>
                 <el-table-column prop="address" label="家庭住址" align="center"></el-table-column>
+                <el-table-column label="操作" align="center" width="220">
+                 <template slot-scope="scope">
+                    <el-button @click="changeStudent(scope.row)" type="primary">修改</el-button>
+                    <el-button @click="deleteStudent(scope.row)" type="danger">删除</el-button>
+                </template>
+                </el-table-column>
             </el-table>
         </div>
         <div style="text-align: right; margin-top: 12px;">
@@ -95,7 +101,7 @@
     </div>
 </template>
 <script>
-import { addStudent, getStudentList } from "@/api/studentManage/index.js"
+import { addStudent, getStudentList,deleteStudent } from "@/api/studentManage/index.js"
 export default {
     name:"studentInfo",
     data() {
@@ -178,6 +184,14 @@ export default {
         handleCurrentChange(current){
             this.page.current = current;
             this.getStudentList();
+        },
+        changeStudent(){},
+        deleteStudent(row){
+            let data = {studyID:row.studyID};
+            deleteStudent(data).then(res=>{
+                console.log(res)
+                this.getStudentList()
+            })
         }
 
 

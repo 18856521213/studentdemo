@@ -15,3 +15,19 @@ export function getStudentList(data){
         data:data
     })
 }
+//删除学生
+export function deleteStudent(data){
+    return request({
+        url:"/admin/deleteStudent",
+        method:"post",
+        data:data
+    })
+}
+//更新学生资料
+export function updateStudent(data){
+    return request({
+        url:"/admin/updateStudent",
+        method:"post",
+        data:data
+    })
+}
