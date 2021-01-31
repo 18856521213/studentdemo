@@ -1,17 +1,17 @@
 <template>
     <div class="box">
-        <el-form ref="studentForm" inline :model="ruleForm" :rules="rules" label-width="90px">
+        <el-form ref="studentForm" inline :model="filterForm" :rules="rules" label-width="90px">
             <el-form-item label="学生姓名">
-                <el-input placeholder="请输入学生姓名"></el-input>
+                <el-input placeholder="请输入学生姓名" v-model="filterForm.name"></el-input>
             </el-form-item>
-            <el-form-item label="学生学号">
+            <!-- <el-form-item label="学生学号">
                 <el-input placeholder="请输入学生学号"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="身份证号">
-                <el-input placeholder="请输入身份证号"></el-input>
+                <el-input placeholder="请输入身份证号" v-model="filterForm.studyID"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" icon="el-icon-search">查询</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="searchHandle">查询</el-button>
                 <el-button type="primary" @click="dialogVisible = true">添加学生</el-button>
                 <el-button type="warning">重置</el-button>
             </el-form-item>
@@ -34,7 +34,7 @@
                 <el-table-column prop="address" label="家庭住址" align="center"></el-table-column>
             </el-table>
         </div>
-        <div>
+        <div style="text-align: right; margin-top: 12px;">
             <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
@@ -107,7 +107,10 @@ export default {
                 total: 0,
                 sizes: [10, 20, 50, 100]
             },
-            ruleForm:{},
+            filterForm:{
+                name:"",
+                studyID:"",
+            },
             //表单验证规则
             rules:{},
             dialogVisible:false,
@@ -143,7 +146,7 @@ export default {
                     size:this.page.size,
                     current:this.page.current
                 },
-                express:{}
+                express:this.filterForm
             };
             getStudentList(data).then(res =>{
                 console.log(res);
@@ -162,6 +165,10 @@ export default {
                    this.getStudentList()
                }
             })
+        },
+        searchHandle(){
+            this.page.current = 1;
+            this.getStudentList();
         },
         handleSizeChange(size){
             this.page.size = size;

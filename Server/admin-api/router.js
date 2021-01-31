@@ -22,14 +22,16 @@ router.post('/addStudent',(req,res)=>{
 })
 //查询学生接口
 router.post('/findStudent',(req,res)=>{
-  console.log(req.body);
   let count = null;
-  student.find(req.body.express,(err,doc)=>{
+  let filter = {
+    name:{$regex:req.body.express.name},
+    studyID:{$regex:req.body.express.studyID},
+  }
+  student.find(filter,(err,doc)=>{
     count = doc
-  }).estimatedDocumentCount()
-  student.find(req.body.express,(err,doc)=>{
+  }).count()
+  student.find(filter,(err,doc)=>{
     if(!err){
-      
       let data = {
         success:true,
         data:doc,
