@@ -16,23 +16,35 @@
                 <el-button type="warning">重置</el-button>
             </el-form-item>
         </el-form>
-        <el-table
-        :data="tableData"
-        border
-        :header-cell-style="{background:'#cadcff',color:'#606266'}"
-        style="width: 100%">
-            <el-table-column type="index" :index="indexMethod" label="序号" width="60" align="center"></el-table-column>
-            <el-table-column prop="name" label="姓名" align="center"></el-table-column>
-            <el-table-column prop="age" label="年龄" align="center"></el-table-column>
-            <el-table-column prop="studyID" label="身份证号" align="center"></el-table-column>
-            <el-table-column prop="born" label="出生年月日" align="center"></el-table-column>
-            <el-table-column prop="sex" label="学生性别" align="center"></el-table-column>
-            <el-table-column prop="studentClass" label="所在班级" align="center"></el-table-column>
-            <el-table-column prop="fatherName" label="父亲姓名" align="center"></el-table-column>
-            <el-table-column prop="matherName" label="母亲姓名" align="center"></el-table-column>
-            <el-table-column prop="address" label="家庭住址" align="center"></el-table-column>
-        </el-table>
-
+        <div>
+            <el-table
+            :data="tableData"
+            border
+            :header-cell-style="{background:'#cadcff',color:'#606266'}"
+            style="width: 100%">
+                <el-table-column type="index" :index="indexMethod" label="序号" width="60" align="center"></el-table-column>
+                <el-table-column prop="name" label="姓名" align="center"></el-table-column>
+                <el-table-column prop="age" label="年龄" align="center"></el-table-column>
+                <el-table-column prop="studyID" label="身份证号" align="center"></el-table-column>
+                <el-table-column prop="born" label="出生年月日" align="center"></el-table-column>
+                <el-table-column prop="sex" label="学生性别" align="center"></el-table-column>
+                <el-table-column prop="studentClass" label="所在班级" align="center"></el-table-column>
+                <el-table-column prop="fatherName" label="父亲姓名" align="center"></el-table-column>
+                <el-table-column prop="matherName" label="母亲姓名" align="center"></el-table-column>
+                <el-table-column prop="address" label="家庭住址" align="center"></el-table-column>
+            </el-table>
+        </div>
+        <div>
+            <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="page.current"
+                :page-sizes="page.sizes"
+                :page-size="page.size"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="page.total">
+            </el-pagination>
+        </div>
         <el-dialog
             title="添加学生"
             :visible.sync="dialogVisible"
@@ -126,11 +138,18 @@ export default {
         },
         //获取学生列表
         getStudentList(){
-            let data = {};
+            let data = {
+                page:{
+                    size:this.page.size,
+                    current:this.page.current
+                },
+                express:{}
+            };
             getStudentList(data).then(res =>{
                 console.log(res);
                 if(res.success){
                     this.tableData = res.data;
+                    this.page.total = res.total
                 }
             })
         },
@@ -143,7 +162,17 @@ export default {
                    this.getStudentList()
                }
             })
+        },
+        handleSizeChange(size){
+            this.page.size = size;
+            this.page.current = 1;
+            this.getStudentList();
+        },
+        handleCurrentChange(current){
+            this.page.current = current;
+            this.getStudentList();
         }
+
 
     },
 }

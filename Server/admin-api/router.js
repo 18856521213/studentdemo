@@ -22,16 +22,25 @@ router.post('/addStudent',(req,res)=>{
 })
 //查询学生接口
 router.post('/findStudent',(req,res)=>{
-  student.find(req.body,(err,doc)=>{
+  console.log(req.body);
+  let count = null;
+  student.find(req.body.express,(err,doc)=>{
+    count = doc
+  }).estimatedDocumentCount()
+  student.find(req.body.express,(err,doc)=>{
     if(!err){
+      
       let data = {
         success:true,
         data:doc,
+        total:count,
         message:"查找学生列表成功"
       }
       res.json(data)
+    }else{
+      res.json({message:err,success:false})
     }
-  })
+  }).skip(req.body.page.size*(req.body.page.current - 1)).limit(req.body.page.size)
 })
 
 
