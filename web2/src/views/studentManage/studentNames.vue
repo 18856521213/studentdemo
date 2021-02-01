@@ -280,9 +280,9 @@ export default {
         },
         //重置添加学生表单信息
         resetAddForm(){
-            // for(let i in this.addStudentForm){
-            //     this.addStudentForm[i] = ""
-            // }
+            for(let i in this.addStudentForm){
+                this.addStudentForm[i] = ""
+            }
             // this.refs['studentForm'].resetFields();
         }
 
