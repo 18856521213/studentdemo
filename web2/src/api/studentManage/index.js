@@ -31,3 +31,11 @@ export function updateStudent(data){
         data:data
     })
 }
+//下载模板
+export function uploadExcel(data){
+    return request({
+        url:"/admin/uploadExcel",
+        method:"post",
+        data:data
+    })
+}

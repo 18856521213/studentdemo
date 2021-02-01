@@ -12,5 +12,7 @@ router.post('/deleteStudent',handle.deleteStudent)
 
 //修改学生资料
 router.post('/updateStudent',handle.updateStudent)
+//下载模板
+router.post('/uploadExcel',handle.uploadExcel)
 // 导出路由对象
 module.exports = router

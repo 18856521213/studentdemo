@@ -14,6 +14,7 @@
                 <el-button size="mini" type="primary" icon="el-icon-search" @click="searchHandle">查询</el-button>
                 <el-button size="mini" type="primary" @click="dialogVisible = true">添加学生</el-button>
                 <el-button size="mini" type="warning">重置</el-button>
+                <el-button size="mini" type="primary" @click="uploadExcel">下载模板</el-button>
             </el-form-item>
         </el-form>
         <div>
@@ -136,7 +137,7 @@
     </div>
 </template>
 <script>
-import { addStudent, getStudentList,deleteStudent,updateStudent } from "@/api/studentManage/index.js"
+import { addStudent, getStudentList,deleteStudent,updateStudent,uploadExcel } from "@/api/studentManage/index.js"
 export default {
     name:"studentInfo",
     data() {
@@ -284,6 +285,12 @@ export default {
                 this.addStudentForm[i] = ""
             }
             // this.refs['studentForm'].resetFields();
+        },
+        //下载模板
+        uploadExcel(){
+            uploadExcel().then(res=>{
+                console.log(res)
+            })
         }
 
 

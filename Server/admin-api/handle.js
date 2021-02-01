@@ -49,6 +49,7 @@ module.exports = {
         res.json({success:true,message:"删除成功"})
       }else{
         res.json({success:false,message:"删除失败"})
+
       }
     })
   },
@@ -61,5 +62,10 @@ module.exports = {
         console.log(err);
       }
     })
+  },
+  //下载文件
+  uploadExcel(req,res){
+    console.log(__dirname)
+    res.download(__dirname+"/public/model.xlsx","模板.xlsx",(err)=>{})
   }
 }
