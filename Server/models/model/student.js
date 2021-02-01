@@ -1,4 +1,5 @@
 const mongoose = require('../index');
+const dayjs = require('dayjs')
 //定义添加学生的数据结构
 const addStudemt = mongoose.Schema({
   name: { type: String },
@@ -16,6 +17,10 @@ const addStudemt = mongoose.Schema({
   fatherName:{type:String},
   matherName:{type:String},
   address:{type:String},
+  createTime:{
+    type:String,
+    default:dayjs().format('YYYY-MM-DD HH:mm:ss')
+  }
 
 })
 

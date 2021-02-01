@@ -3,3 +3,17 @@ html,body,#app {
     margin: 0;
     padding: 0;
   }
+/* ---------element对话框的样式修改--------- */
+  .el-dialog__header{
+    background-color: #558dfd;
+    text-align: center;
+    color: #fff;
+  }
+  .el-dialog__title{
+    color: #fff !important;
+    font-size: 20px !important;
+  }
+  .dialog-content .el-input__inner{
+    width:270px !important;
+  }
+  /* ---------element对话框的样式修改-----end */

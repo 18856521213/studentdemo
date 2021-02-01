@@ -1,4 +1,5 @@
 const student = require('../models/model/student.js')
+const dayjs = require('dayjs')
 module.exports = {
   //查找学生
   async findStudent(req,res){
@@ -20,12 +21,12 @@ module.exports = {
       }else{
         res.json({message:err,success:false})
       }
-    }).skip(req.body.page.size*(req.body.page.current - 1)).limit(req.body.page.size)
+    }).sort({createTime:-1}).skip(req.body.page.size*(req.body.page.current - 1)).limit(req.body.page.size)
   
   },
   //添加学生
   addStudent(req,res){
-    console.log(req.body);
+    req.body.createTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
     let addS = new student(req.body)
      addS.save((err)=>{
       if(!err){
@@ -53,9 +54,11 @@ module.exports = {
   },
   //修改学生信息
   updateStudent(req,res){
-    student.updateOne(req.body.studyID,req.body,(err,result)=>{
+    student.updateOne({studyID:req.body.studyID},req.body,(err,result)=>{
       if(!err){
         res.json({success:true,message:"修改成功"})
+      }else{
+        console.log(err);
       }
     })
   }
