@@ -25,7 +25,7 @@ module.exports = {
   
   },
   //添加学生
-  addStudent(req,res){
+   addStudent(req,res){
     req.body.createTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
     let addS = new student(req.body)
      addS.save((err)=>{

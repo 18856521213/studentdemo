@@ -15,6 +15,16 @@
                 <el-button size="mini" type="primary" @click="dialogVisible = true">添加学生</el-button>
                 <el-button size="mini" type="warning">重置</el-button>
                 <el-button size="mini" type="primary" @click="uploadExcel">下载模板</el-button>
+                <el-upload
+                    class="upload-demo"
+                    :multiple="false"
+                    :limit="1"
+                    accept=".xlsx,.xls"
+                    :http-request="uploadFile"
+                    on-change="changeFile"
+                    :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                </el-upload>
             </el-form-item>
         </el-form>
         <div>
@@ -178,6 +188,8 @@ export default {
                 matherName:'',
                 address:'',
             },
+            //上传的文件
+            fileList:[],
             //表单验证规则
             rules:{
                 name:[
@@ -318,7 +330,8 @@ export default {
             })
         },
         //批量添加学生
-
+        uploadFile(parase){},
+        changeFile(file,fileList){}
 
     },
 }
@@ -326,5 +339,8 @@ export default {
 <style lang="less" scoped>
 .box{
     padding-top:10px;
+    // /deep/ .upload-demo{
+    //     width: 90px !important;
+    // }
 }
 </style>
