@@ -68,5 +68,9 @@ module.exports = {
   //下载文件
   uploadExcel(req,res){
     res.download(__dirname+"/public/model.xlsx","模板.xlsx",(err)=>{})
+  },
+  //批量添加学生
+  batchAddStudentInfo(req,res){
+    console.log(req.body);
   }
 }

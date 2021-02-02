@@ -15,16 +15,7 @@
                 <el-button size="mini" type="primary" @click="dialogVisible = true">添加学生</el-button>
                 <el-button size="mini" type="warning">重置</el-button>
                 <el-button size="mini" type="primary" @click="uploadExcel">下载模板</el-button>
-                <el-upload
-                    class="upload-demo"
-                    :multiple="false"
-                    :limit="1"
-                    accept=".xlsx,.xls"
-                    :http-request="uploadFile"
-                    on-change="changeFile"
-                    :file-list="fileList">
-                    <el-button size="small" type="primary">点击上传</el-button>
-                </el-upload>
+                <el-button size="mini" type="primary" @click="dialogVisible3 = true">批量添加学生信息</el-button>
             </el-form-item>
         </el-form>
         <div>
@@ -144,10 +135,38 @@
         </el-dialog>
 
 
+        <el-dialog
+            title="批量添加学生资料"
+            :visible.sync="dialogVisible3"
+            :show-close="false"
+            width="500px">
+            <div class="dialog-content">
+                <el-upload
+                    class="upload-demo"
+                    ref="upload"
+                    action="#"
+                    :multiple="false"
+                    :limit="1"
+                    accept=".xlsx,.xls"
+                    :auto-upload="false"
+                    :http-request="uploadFile"
+                    :on-change="changeFile"
+                    :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传学生信息文档</el-button>
+                    <div slot="tip" class="el-upload__tip">只能上传固定模板，且上传一个文件</div>
+                </el-upload>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible3 = false">取 消</el-button>
+                <el-button type="primary" @click="batchAddStudentInfo">确 定</el-button>
+            </span>
+        </el-dialog>
+
+
     </div>
 </template>
 <script>
-import { addStudent, getStudentList,deleteStudent,updateStudent,uploadExcel } from "@/api/studentManage/index.js"
+import { addStudent, getStudentList,deleteStudent,updateStudent,uploadExcel,batchAddStudentInfo } from "@/api/studentManage/index.js"
 export default {
     name:"studentInfo",
     data() {
@@ -165,6 +184,7 @@ export default {
             },
             dialogVisible:false,
             dialogVisible2:false,
+            dialogVisible3:false,
             addStudentForm:{
                 name: '',
                 studyID:'',
@@ -265,6 +285,7 @@ export default {
             this.dialogVisible2 = true
             console.log(this.changeStudentInfo);
         },
+        //提交学生修改信息
         changeSrudentInfo(){
             updateStudent(this.changeStudentInfo).then(res =>{
                 if(res.success){
@@ -330,9 +351,22 @@ export default {
             })
         },
         //批量添加学生
-        uploadFile(parase){},
-        changeFile(file,fileList){}
-
+        //自定义的添加学生信息
+        uploadFile(file){
+            let data = new FormData();
+            data.append("file",file)
+            batchAddStudentInfo(data).then(res=>{
+            })
+        },
+        //文件改变的回调函数
+        changeFile(file,fileList){
+            this.uploadFile(file)
+            console.log(file,fileList)
+        },
+        //批量添加学生按钮
+        batchAddStudentInfo(){
+            this.$refs.upload.submit();
+        }
     },
 }
 </script>

@@ -40,3 +40,12 @@ export function uploadExcel(data){
         responseType: "blob",
     })
 }
+//批量添加学生信息
+export function batchAddStudentInfo(data){
+    return request({
+        url:"/admin/batchAddStudentInfo",
+        method:"post",
+        data:data,
+        // header:{"content-type":""}
+    })
+}

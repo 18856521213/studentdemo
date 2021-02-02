@@ -14,5 +14,7 @@ router.post('/deleteStudent',handle.deleteStudent)
 router.post('/updateStudent',handle.updateStudent)
 //下载模板
 router.post('/uploadExcel',handle.uploadExcel)
+//批量添加学生信息
+router.post('/batchAddStudentInfo',handle.batchAddStudentInfo)
 // 导出路由对象
 module.exports = router
