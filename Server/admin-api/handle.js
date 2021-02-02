@@ -9,7 +9,7 @@ module.exports = {
     }
   
     let count = await student.countDocuments(filter)
-    student.find(filter,(err,doc)=>{
+    student.find(filter,{__v:0,_id:0},(err,doc)=>{
       if(!err){
         let data = {
           success:true,
@@ -59,13 +59,14 @@ module.exports = {
       if(!err){
         res.json({success:true,message:"修改成功"})
       }else{
-        console.log(err);
+        res.json({success:false,message:err})
+
+        // console.log(err);
       }
     })
   },
   //下载文件
   uploadExcel(req,res){
-    console.log(__dirname)
     res.download(__dirname+"/public/model.xlsx","模板.xlsx",(err)=>{})
   }
 }

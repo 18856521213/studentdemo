@@ -251,6 +251,7 @@ export default {
             Object.assign(this.changeStudentInfo,row)
             // this.changeStudentInfo.studyID = row.studyID;
             this.dialogVisible2 = true
+            console.log(this.changeStudentInfo);
         },
         changeSrudentInfo(){
             updateStudent(this.changeStudentInfo).then(res =>{
@@ -289,9 +290,34 @@ export default {
         //下载模板
         uploadExcel(){
             uploadExcel().then(res=>{
-                console.log(res)
+                let data = res;
+                // console.log(data)
+                let blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'} );
+                let fileName = "模板.xlsx";// fileName下载时文件名
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                /** For IE* >=IE10*/
+                window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                /** For Non-IE (chrome, firefox)*/
+                var URL = window.URL || window.webkitURL;
+                var objectUrl = URL.createObjectURL(blob);
+                if (fileName) {
+                    var a = document.createElement('a');
+                    if (typeof a.download === 'undefined') {
+                    window.location = objectUrl;
+                } else {
+                    a.href = objectUrl;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    }
+                }
+                }
+
             })
-        }
+        },
+        //批量添加学生
 
 
     },

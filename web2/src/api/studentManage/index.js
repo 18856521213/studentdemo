@@ -36,6 +36,7 @@ export function uploadExcel(data){
     return request({
         url:"/admin/uploadExcel",
         method:"post",
-        data:data
+        data:data,
+        responseType: "blob",
     })
 }
