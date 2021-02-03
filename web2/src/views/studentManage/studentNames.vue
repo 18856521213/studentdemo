@@ -245,6 +245,7 @@ export default {
                 express:this.filterForm
             };
             getStudentList(data).then(res =>{
+                console.log(res)
                 if(res.success){
                     let {data} = res
                     data.forEach(item => {

@@ -1,5 +1,6 @@
 const student = require('../models/model/student.js')
 const dayjs = require('dayjs')
+const fs = require('fs')
 const sheet = require('node-xlsx')
 module.exports = {
   //查找学生
@@ -81,7 +82,6 @@ module.exports = {
   //批量添加学生
   async  batchAddStudentInfo(req,res){
     const data = sheet.parse(req.files.file.path)
-    console.log(data[0].data)
     for(let i = 1;i<=data[0].data.length-1;i++){
         let studentData = {
             name:data[0].data[i][0],
@@ -102,5 +102,12 @@ module.exports = {
 
       }
       res.json({success:true,message:"批量添加成功"})
+      //删除文件
+      fs.unlink(req.files.file.path,(err)=>{
+        console.log(__dirname+"/upload/"+req.files.file.path);
+        if(!err){
+          console.log(req.files.file.path);
+        }
+      })
   }
 }
