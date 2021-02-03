@@ -46,6 +46,6 @@ export function batchAddStudentInfo(data){
         url:"/admin/batchAddStudentInfo",
         method:"post",
         data:data,
-        // header:{"content-type":""}
+        headers:{ 'content-type': 'multipart/form-data' }
     })
 }

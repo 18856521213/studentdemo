@@ -2,8 +2,14 @@ const mongoose = require('../index');
 const dayjs = require('dayjs')
 //定义添加学生的数据结构
 const addStudemt = mongoose.Schema({
-  name: { type: String },
-  studyID:{type: String},
+  name: { 
+    type: String,
+    index:true 
+  },
+  studyID:{
+    type: String,
+    index:true
+  },
   age:{
     type: String
   },

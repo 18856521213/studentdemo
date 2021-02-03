@@ -221,7 +221,7 @@ export default {
     },
     watch:{
         tableData(newVal){
-            if(newVal.length == 0){
+            if(newVal.length == 0 && this.page.total !=0){
                 this.page.current = this.page.current - 1;
                 this.getStudentList()
             }
@@ -283,7 +283,6 @@ export default {
             Object.assign(this.changeStudentInfo,row)
             // this.changeStudentInfo.studyID = row.studyID;
             this.dialogVisible2 = true
-            console.log(this.changeStudentInfo);
         },
         //提交学生修改信息
         changeSrudentInfo(){
@@ -352,15 +351,20 @@ export default {
         },
         //批量添加学生
         //自定义的添加学生信息
-        uploadFile(file){
+        uploadFile(params){
             let data = new FormData();
-            data.append("file",file)
+            data.append("file",params.file)
             batchAddStudentInfo(data).then(res=>{
+                if(res.success){
+                    this.dialogVisible3 = false;
+                    this.fileList = [];
+                    this.$message.success("批量添加成功")
+                    this.getStudentList()
+                }
             })
         },
         //文件改变的回调函数
         changeFile(file,fileList){
-            this.uploadFile(file)
             console.log(file,fileList)
         },
         //批量添加学生按钮

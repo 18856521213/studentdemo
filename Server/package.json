@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "mongoose": "^5.11.13",
+    "node-xlsx": "^0.16.1",
     "nodemon": "^2.0.7",
     "yarn": "^1.22.10"
   }

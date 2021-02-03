@@ -1,5 +1,15 @@
 const express = require('express');
 const router = express.Router();
+//处理formData传过来的文件
+const formidable  = require('express-formidable')
+router.use('/batchAddStudentInfo',formidable(
+    {
+        encoding: 'utf-8',//编码
+        uploadDir:__dirname + "/upload",//存储的文件地址
+        multiples: true, //转为二维数组
+        keepExtensions:true,//保留文件后缀名
+    }
+))
 
 const handle = require('./handle')
 //添加学生接口
