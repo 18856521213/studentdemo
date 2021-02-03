@@ -77,7 +77,7 @@ module.exports = {
   },
   //下载文件
   uploadExcel(req,res){
-    res.download(__dirname+"/public/model.xlsx","学生信息模板.xlsx",(err)=>{})
+    res.download(__dirname+"/public/model.xlsx",(err)=>{})
   },
   //批量添加学生
   async  batchAddStudentInfo(req,res){
