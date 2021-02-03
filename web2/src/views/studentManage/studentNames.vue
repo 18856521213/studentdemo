@@ -245,9 +245,12 @@ export default {
                 express:this.filterForm
             };
             getStudentList(data).then(res =>{
-                console.log(res);
                 if(res.success){
-                    this.tableData = res.data;
+                    let {data} = res
+                    data.forEach(item => {
+                        item.sex == 0 ? item.sex="女" : item.sex="男";
+                    });
+                    this.tableData = data;
                     this.page.total = res.total
                 }
             })
