@@ -325,7 +325,7 @@ export default {
                 let data = res;
                 // console.log(data)
                 let blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'} );
-                let fileName = "模板.xlsx";// fileName下载时文件名
+                let fileName = "批量添加学生信息模板.xlsx";// fileName下载时文件名
                 if (typeof window.navigator.msSaveBlob !== 'undefined') {
                 /** For IE* >=IE10*/
                 window.navigator.msSaveBlob(blob, fileName);

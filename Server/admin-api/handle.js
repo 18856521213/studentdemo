@@ -4,7 +4,6 @@ const sheet = require('node-xlsx')
 module.exports = {
   //查找学生
   async findStudent(req,res){
-    console.log("我被执行了");
     let filter = {
       name:{$regex:req.body.express.name},
       studyID:{$regex:req.body.express.studyID},
@@ -80,8 +79,9 @@ module.exports = {
     res.download(__dirname+"/public/model.xlsx","学生信息模板.xlsx",(err)=>{})
   },
   //批量添加学生
-  async  batchAddStudentInfo(req,res,next){
+  async  batchAddStudentInfo(req,res){
     const data = sheet.parse(req.files.file.path)
+    console.log(data[0].data)
     for(let i = 1;i<=data[0].data.length-1;i++){
         let studentData = {
             name:data[0].data[i][0],
