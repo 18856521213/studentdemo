@@ -101,7 +101,6 @@ module.exports = {
        })
 
       }
-      res.json({success:true,message:"批量添加成功"})
       //删除文件
       fs.unlink(req.files.file.path,(err)=>{
         console.log(__dirname+"/upload/"+req.files.file.path);
@@ -109,5 +108,6 @@ module.exports = {
           console.log(req.files.file.path);
         }
       })
+      res.json({success:true,message:"批量添加成功"})
   }
 }
