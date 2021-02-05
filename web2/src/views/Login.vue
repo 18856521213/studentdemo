@@ -5,16 +5,16 @@
               <h4>用户登录</h4>
           </div>
           <div class="input">
-            <el-form label-width="60px">
+            <el-form label-width="60px" :model="addUserform">
               <el-form-item label="用户名">
-                <el-input></el-input>
+                <el-input v-model="addUserform.userName"></el-input>
               </el-form-item>
               <el-form-item label="密码">
-                <el-input></el-input>
+                <el-input type="password" v-model="addUserform.password"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button>登录</el-button>
-                <el-button>注册</el-button>
+                <el-button @click="registered">注册</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -22,8 +22,24 @@
   </div>
 </template>
 <script>
+import { addUser } from "@/api/user/index.js"
 export default {
-  
+  name:"login",
+  data() {
+    return {
+      addUserform:{
+        userName:"",
+        password:""
+      }
+    }
+  },
+  methods: {
+    registered(){
+      addUser(this.addUserform).then(res =>{
+        console.log(res);
+      })
+    }
+  },
 }
 </script>
 <style lang="less" scoped>

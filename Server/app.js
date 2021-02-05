@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser')
 //引入管理后台的路由
 const adminApi = require('./admin-api/router.js');
+const User = require('./admin-api/User.js');
 // 跨域
 app.use(require('cors')())
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 //引入后台管理接口
 app.use('/admin',adminApi);
+app.use('/user',User);
 
 const PORT = 3007;
 app.listen(PORT,()=>{
