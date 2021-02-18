@@ -1,24 +1,17 @@
 <template>
   <div class="box">
-      <div class="content">
-          <div class="title">
-              <h4>用户登录</h4>
-          </div>
-          <div class="input">
-            <el-form label-width="60px" :model="addUserform">
-              <el-form-item label="用户名">
-                <el-input v-model="addUserform.userName"></el-input>
-              </el-form-item>
-              <el-form-item label="密码">
-                <el-input type="password" v-model="addUserform.password"></el-input>
-              </el-form-item>
-              <el-form-item>
-                <el-button>登录</el-button>
-                <el-button @click="registered">注册</el-button>
-              </el-form-item>
-            </el-form>
-          </div>
+    <div class="content">
+      <div class="logo">
+        <img src="~@/assets/logo.png" alt="logo">
+        学生管理系统
       </div>
+      <div class="user">
+        <input type="text" class="input">
+      </div>
+      <div class="password">
+        <input type="password" class="input">
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -58,31 +51,46 @@ export default {
       right: 0;
       bottom: 0;
       top: 0;
-      background-color: rgba(0, 0, 0, .5);
+      background-color: rgba(0, 0, 0, .6);
       z-index: 2;
     }
     .content{
-      width: 25%;
-      height: 45%;
-      border-radius: 2%;
-      background:#fff;
-      z-index: 5;
-      overflow: hidden;
-      .title{
-        background:cornflowerblue;
+      width: 280px;
+      height: 350px;
+      background-color: rgba(0, 0, 0, .2);
+      z-index: 10;
+      padding: 0 10px;
+      .logo{
         width: 100%;
-        height: 15%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        h4{
-          padding: 0;
-          margin: 0;
+        height: 30px;
+        color:#fff;
+        text-align:center;
+        line-height:30px;
+        font-size: 16px;
+        padding: 15px 0 5px 0;
+        img{
+          width:30px;
         }
       }
       .input{
-        padding: 30px 25px 10px 10px;
+        width: 100%;
+        height: 30px;
+        border: 0;
+        outline: none;
+        background-color:transparent;
+        color:#fff;
+      }
+      .user{
+        border: 1px solid #fff;
+        border-radius: 50px;
+        padding:15px 0 0 0;
+        margin: 10px 0 10px 0;
+      }
+      .password{
+        border: 1px solid #fff;
+        border-radius: 50px;
+        padding:15px 0 0 0;
+        margin: 10px 0 10px 0;
       }
     }
   }
