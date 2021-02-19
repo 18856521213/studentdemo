@@ -7,3 +7,11 @@ export function addUser(data){
         data:data
     })
 }
+//用户登录
+export function loginUser(data){
+    return request({
+        url:"/user/logonUser",
+        method:"post",
+        data:data
+    })
+}
