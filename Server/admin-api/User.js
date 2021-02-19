@@ -1,5 +1,6 @@
 const userModel = require('../models/model/user.js')
 const express = require("express")
+const Bcrypt = require('bcrypt')
 const router = express.Router();
 //用户注册
 router.post('/addUser',(req,res)=>{
@@ -28,12 +29,18 @@ router.post('/addUser',(req,res)=>{
 })
 //用户登录
 router.post('/logonUser',(req,res)=>{
-  console.log(req.body);
   userModel.find({userName:req.body.userName},(err,result)=>{
     if(!err){
-      console.log(result);
       if(result.length > 0){
-        res.json({success:true})
+        Bcrypt.compare(req.body.password,result[0].password,(err,isMatch)=>{
+          if(!err){
+            if(isMatch){
+              res.json({success:true,successManage:"登录成功"})
+            }else{
+              res.json({success:false,errMessage:"密码不正确"})
+            }
+          }
+        })
       }else{
         res.json({errMessage:"用户不存在",success:false})
       }
