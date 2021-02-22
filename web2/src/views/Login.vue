@@ -96,9 +96,13 @@ export default {
           password:this.loginUserForm.password,
         }
         loginUser(data).then(res =>{
-          console.log(res);
           if(res.success){
-            this.$router.push("/home/student")
+            // 存储状态到session
+            sessionStorage.setItem("token",JSON.stringify(res))
+            // let token = JSON.parse(sessionStorage.getItem("token")) 
+            // console.log(token);
+            // 跳转路由，不留下历史记录
+            this.$router.replace("/home/student")
           }else{
             this.$message.error(res.errMessage)
           }

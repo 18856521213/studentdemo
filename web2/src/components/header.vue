@@ -7,21 +7,28 @@
         <div class="header-right">
             <el-avatar class="header-img" size="large" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
             <!-- <img src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" alt=""> -->
-            <el-dropdown>
-            <span class="el-dropdown-link" trigger="click">
-                操作员<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">修改密码</el-dropdown-item>
-                <el-dropdown-item command="a">退出</el-dropdown-item>
-            </el-dropdown-menu>
+            <el-dropdown @command="dropOut">
+                <span class="el-dropdown-link" trigger="click">
+                    操作员<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown" >
+                    <el-dropdown-item command="a">修改密码</el-dropdown-item>
+                    <el-dropdown-item command="b">退出</el-dropdown-item>
+                </el-dropdown-menu>
             </el-dropdown>
         </div>
     </div>
 </template>
 <script>
 export default {
-    
+    methods: {
+        dropOut(value){
+            if(value == "b"){
+                 this.$router.replace("/login")
+                 sessionStorage.clear()
+            }
+        }
+    },
 }
 </script>
 <style lang="less" scoped>

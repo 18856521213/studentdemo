@@ -64,4 +64,17 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
+//路由守卫
+router.beforeEach((to, from, next)=>{
+  if(to.name != "Login"){
+    let token = JSON.parse(sessionStorage.getItem("token"));
+    if(token){
+      next()
+    }else{
+      next(false)
+    }
+  }else{
+    next()
+  }
+})
 export default router
