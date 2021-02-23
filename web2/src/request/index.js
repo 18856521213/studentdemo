@@ -8,10 +8,9 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
-
   config => {
     // 携带token, 设置请求头
-    config.headers['Authorization'] = localStorage.getItem('token') || ''
+    config.headers['Authorization'] = localStorage.getItem('token') || 'hfsdiufhdsifdshbfiuds'
     return config
   },
 
